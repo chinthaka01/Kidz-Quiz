@@ -16,7 +16,7 @@ Swift 5
 - The UI is designed to be simple showing only required details, reducing the number of lines in the view files and the time required to complete the project.
 - Log statements have been added only for properties and functions that require additional description, maintain the files length.
 
-# An example of a sample question received from the API in JSON format:
+# An example of a sample question received by the API in JSON format:
 
         {
             "type": "multiple",

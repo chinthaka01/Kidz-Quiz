@@ -32,3 +32,5 @@ You have %@ Questions.";
 "Next_Question" = "Next Question";
 "Exit_Quiz" = "Exit Quiz";
 "See_Score" = "See Your Score";
+"Final_Result" = "Final Result";
+"Overral_Percentage" = "Overral Percentage";

@@ -32,4 +32,25 @@ class QuestionViewModel: ParentViewModel {
             answers[index].isSelected = answers[index].id == selectedAnswer.id
         }
     }
+    
+    func saveResults(question: Question, selectedAnswer: Answer, results: inout [String: [String: [String: Int]]]) {
+        let category = question.category
+        let difficulty = question.difficulty
+        let correctAnswer = question.correct_answer
+        let defaultResult = [StatsKeys.total.rawValue: 1, StatsKeys.correctCount.rawValue: 0]
+        
+        if results[category] == nil {
+            results[category] = [difficulty.rawValue: defaultResult]
+        } else if results[category]![difficulty.rawValue] == nil {
+            results[category]![difficulty.rawValue] = defaultResult
+        } else {
+            let totalCount = results[category]![difficulty.rawValue]![StatsKeys.total.rawValue]! + 1
+            results[category]![difficulty.rawValue]![StatsKeys.total.rawValue] = totalCount
+        }
+        
+        if selectedAnswer.text == correctAnswer {
+            let correctCount = results[category]![difficulty.rawValue]![StatsKeys.correctCount.rawValue]! + 1
+            results[category]![difficulty.rawValue]![StatsKeys.correctCount.rawValue] = correctCount
+        }
+    }
 }

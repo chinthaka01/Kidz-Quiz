@@ -10,9 +10,14 @@ import SwiftUI
 struct QuestionView: View {
     
     @ObservedObject var viewModel = QuestionViewModel()
+
+    //  The format: [category: [difficulty: [total: <value>, correctCount: <value>]]]
+    //  The percentages are calculated in the StatsView after this's finalized.
+    @State var results: [String: [String: [String: Int]]] = [:]
     
     @State private var showingResult = false
     @State private var navigatingNextQuestion = false
+    @State private var navigatingStats = false
     @State private var selectedAnswer: Answer?
 
     //  Index of current question
@@ -24,7 +29,7 @@ struct QuestionView: View {
     var body: some View {
         bodyView
         .padding()
-        .sheet(isPresented: $showingResult, onDismiss: handleNavigation) {
+        .sheet(isPresented: $showingResult) {
             getResultSheetView()
                 .presentationDetents([.medium, .large])
                 .presentationDragIndicator(.hidden)
@@ -34,9 +39,16 @@ struct QuestionView: View {
         }
         .navigationBarBackButtonHidden()
         .navigationTitle(
-            viewModel.getLocalizedString(key: "QuestionPage_Title%@%@",args: [(questionIndex + 1).description,questions.count.description]))
+            viewModel.getLocalizedString(
+                key: "QuestionPage_Title%@%@",
+                args: [(questionIndex + 1).description, questions.count.description]
+            )
+        )
         .navigationDestination(isPresented: $navigatingNextQuestion) {
-            QuestionView(questionIndex: questionIndex + 1, questions: questions)
+            QuestionView(results: results, questionIndex: questionIndex + 1, questions: questions)
+        }
+        .navigationDestination(isPresented: $navigatingStats) {
+            StatsView(results: results)
         }
     }
     
@@ -89,7 +101,7 @@ struct QuestionView: View {
                 .padding(.bottom)
                 .disabled(selectedAnswer == nil)
 
-                Button(action: { handleNavigation() }) {
+                Button(action: { endQuiz() }) {
                     Text("\(viewModel.getLocalizedString(key: "Exit_Quiz"))")
                 }
                 .padding(.bottom)
@@ -128,11 +140,8 @@ struct QuestionView: View {
             }
         }
     }
-}
 
-extension QuestionView {
-
-    func getResultSheetView() -> some View {
+    private func getResultSheetView() -> some View {
         var iconName = "checkmark.circle.fill"
         var statusTextKey = "Selected_Correct_Answer"
         var correctAnswerText = ""
@@ -160,22 +169,24 @@ extension QuestionView {
             Spacer()
             
             VStack {
-                Button(action: { handleNavigation() }) {
+                Button(action: { handleAnswerSelection() }) {
                     Text("\(getNavButtonTitle())")
                 }
                 .padding(.bottom)
 
-                Button(action: { handleNavigation() }) {
+                Button(action: { endQuiz() }) {
                     Text("\(viewModel.getLocalizedString(key: "Exit_Quiz"))")
                 }
                 .padding(.bottom)
                 .opacity(questionIndex < questions.count - 1 ? 1 : 0)
             }
-
         }
     }
+}
+
+extension QuestionView {
     
-    func getNavButtonTitle() -> String {
+    private func getNavButtonTitle() -> String {
         if questionIndex < questions.count - 1 {
             viewModel.getLocalizedString(key: "Next_Question")
         } else {
@@ -183,15 +194,30 @@ extension QuestionView {
         }
     }
     
-    func handleNavigation() {
+    private func handleAnswerSelection() {
         showingResult = false
         
-        guard selectedAnswer != nil else { return }
+        guard let selectedAnswer = selectedAnswer else { return }
+
+        viewModel.saveResults(question: questions[questionIndex], selectedAnswer: selectedAnswer, results: &results)
 
         if questionIndex < questions.count - 1 {
             navigatingNextQuestion = true
         } else {
-            
+            navigatingStats = true
         }
+    }
+    
+    private func endQuiz() {
+        showingResult = false
+
+        guard let selectedAnswer = selectedAnswer else {
+            navigatingStats = true
+            return
+        }
+
+        viewModel.saveResults(question: questions[questionIndex], selectedAnswer: selectedAnswer, results: &results)
+        
+        navigatingStats = true
     }
 }

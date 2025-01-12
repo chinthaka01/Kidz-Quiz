@@ -35,3 +35,10 @@ enum QuizError: Error {
     case apiFailure
     case decodingFailure
 }
+
+enum StatsKeys: String {
+    case total = "total"
+    case correctCount = "correctCount"
+    case fraction = "fraction"
+    case percentage = "percentage"
+}

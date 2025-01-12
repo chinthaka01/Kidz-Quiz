@@ -48,8 +48,10 @@ struct StatsView: View {
                     .fontWeight(.bold)
                     .padding(.horizontal)
                 
-                Button("Go To Home") {
-
+                Button(viewModel.getLocalizedString(key: "Go_Home")) {
+                    //  Still Swift hasn't given a direct way to go to the root view like with Objective-C.
+                    //  We can you Combine-Swift's @State variable for this purpose.
+                    //  But I keep not implementing that since that will make a bit confusion.
                 }
                 .padding(.vertical)
             }

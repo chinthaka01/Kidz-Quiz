@@ -1,0 +1,34 @@
+/* 
+  Localizable.strings
+  Kidz Quiz
+
+  Created by Chinthaka Perera on 1/11/25.
+  
+*/
+
+"Hi" = "Hi!";
+"Loading" = "Loading...";
+"Processing" = "Processing...";
+"Retrying%@" = "Retrying... Attempt: %@.";
+"Quiz_Ready%@" = "Start your quiz! 
+You have %@ Questions.";
+"Quiz_Failed" = "Sorry! Something went wrong. Please try again later.";
+"Quiz_Loading" = "Hold tight! Your Quiz is loading...";
+"Try_Again" = "Try Again";
+"Start_Quiz" = "Start Quiz";
+"QuestionPage_Title%@%@" = "Trying %@ of %@";
+"Category" = "Category";
+"Difficulty" = "Difficulty";
+"Question" = "Question";
+"Pick_Answer" = "Pick Your Answer and Submit:";
+"easy" = "Easy";
+"medium" = "Medium";
+"hard" = "Hard";
+"true" = "True";
+"false" = "False";
+"Submit" = "Submit";
+"Selected_Correct_Answer" = "Hooray! Your Answer is Correct";
+"Selected_Wrong_Answer" = "The Correct Answer is";
+"Next_Question" = "Next Question";
+"Exit_Quiz" = "Exit Quiz";
+"See_Score" = "See Your Score";

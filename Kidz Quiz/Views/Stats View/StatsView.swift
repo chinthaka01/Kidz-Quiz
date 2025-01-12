@@ -50,7 +50,7 @@ struct StatsView: View {
                 
                 Button(viewModel.getLocalizedString(key: "Go_Home")) {
                     //  Still Swift hasn't given a direct way to go to the root view like with Objective-C.
-                    //  We can you Combine-Swift's @State variable for this purpose.
+                    //  We can use Combine-Swift's @State variable as a work-around for this purpose.
                     //  But I keep not implementing that since that will make a bit confusion.
                 }
                 .padding(.vertical)

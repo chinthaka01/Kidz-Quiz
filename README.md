@@ -1,9 +1,6 @@
 # Kidz-Quiz
 This app allows users to answer 10 random questions in a quiz.
 
-![](https://github.com/chinthaka01/Kidz-Quiz/blob/main/Screen%20Record%20-%20Starting%20and%20Exiting%20in%20the%20midway.mp4)
-![](https://github.com/chinthaka01/Kidz-Quiz/blob/main/Screen%20Record%20-%20End%20of%20the%20Quiz.mp4)
-
 # Xcode Version
 16.2
 
@@ -40,6 +37,8 @@ MVVM
 # Project File Structure
 
 - .gitignore
+- Screen Record - Starting and Exiting in the midway.mp4
+- Screen Record - End of the Quiz.mp4
 - en.lproj/
   - Localizable.strings
 - Kidz Quiz/
@@ -70,6 +69,17 @@ MVVM
     - Preview Assets.xcassets/
   - Kidz Quiz.xcodeproj/
 - Kidz QuizTests/
+    - Kidz_QuizTests.swift
 - Kidz QuizUITests/
 - README.md
 
+# Design Patterns use in the Project:
+
+- Swift Extensions, aligning closely related to the Decotator Design Pattern
+- Combine Swift, strongly related to the Observer Design Pattern
+- Closures, closely related to the Command Design Pattern
+- Aditionally, The project adheres to SOLID principals
+
+# Data Structures use in the Project:
+- Array
+- Dictionary

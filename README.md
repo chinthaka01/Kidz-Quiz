@@ -1,6 +1,9 @@
 # Kidz-Quiz
 This app allows users to answer 10 random questions in a quiz.
 
+![](https://github.com/chinthaka01/Kidz-Quiz/blob/main/Screen%20Record%20-%20Starting%20and%20Exiting%20in%20the%20midway.mp4)
+![](https://github.com/chinthaka01/Kidz-Quiz/blob/main/Screen%20Record%20-%20End%20of%20the%20Quiz.mp4)
+
 # Xcode Version
 16.2
 

@@ -80,7 +80,6 @@ struct QuestionView: View {
             }
             .padding(.bottom)
 
-//            Text("\(quizzes[quizIndex].question.decodeHTMLEntities())")
             Text("\(questions[questionIndex].question)")
                 .lineLimit(nil)
                 .multilineTextAlignment(.center)

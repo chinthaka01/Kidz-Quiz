@@ -43,6 +43,8 @@ class ContentViewModel: ParentViewModel {
                 
                 do {
                     self.questions = try self.jsonDataDecodeService.decodeQuiz(data: data).results
+                        .map { $0.decodeHTMLTags() }
+                    
                     self.fetchStatus = .isReady
                 } catch {
                     NSLog("Quiz decoding failed: \(error)")

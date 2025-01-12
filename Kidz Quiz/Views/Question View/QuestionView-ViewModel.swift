@@ -19,7 +19,9 @@ class QuestionViewModel: ParentViewModel {
             
             let allAnswers: [Answer] = [Answer(text: correctAnswer, isCorrect: true)] +
                 incorrectAnswers.map { Answer(text: $0) }
-            let sortedAnswers = allAnswers.sorted { $0.text < $1.text }
+
+            let decodedAnswers = allAnswers.map( { $0.decodeHTMLTags() })
+            let sortedAnswers = decodedAnswers.sorted { $0.text < $1.text }
             
             DispatchQueue.main.async {
                 self.answers = sortedAnswers
